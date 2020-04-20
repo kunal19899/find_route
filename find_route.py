@@ -1,11 +1,11 @@
 import os
-import sys
+import sys 
 from queue import PriorityQueue
 
 # everything is working, I just need to do error checking
 
 def create_map(filename):
-    with open(filename) as input:
+        input = open(filename, "r+")
         map = []
         for line in input:
             if line == "END OF INPUT\n":
@@ -15,7 +15,7 @@ def create_map(filename):
             map.append([nodeB, nodeA, distance])
 
 def create_heuristics(filename):
-    with open(filename) as input:
+        input = open(filename, "r+")
         heuristics = {}
         for line in input:
             if line == "END OF INPUT\n":
@@ -115,7 +115,10 @@ def print_results(results, map):
     print("nodes expanded: " + str(results[2]))
     print("nodes generated: " + str(results[3]))
     print("max_nodes in memory: " + str(results[4]))
-    print("distance: " + str(results[1]) + " km")
+    if str(results[1]) == "infinity":
+        print("distance: " + str(results[1]))
+    else:
+        print("distance: " + str(results[1]) + " km")
     print("route:")
     if results[0] != "none":
         for i in range(len(results[0])-1):
